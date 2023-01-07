@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "import", "jsx-a11y", "react-hooks", "prettier"],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": ["js", "jsx"]
+      }
+    ],
+    "max-len": [
+      "error",
+      100,
+      {
+        "ignoreUrls": true
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-console": "warn",
+    "jsx-quotes": ["warn", "prefer-single"],
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-param-reassign": "off",
+    "react/destructuring-assignment": "off",
+    "react/display-name": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": [0, { "js": "never" }, { "jsx": "never" }],
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function", "unnamedComponents": "arrow-function" }
+    ],
+    "import/no-extraneous-dependencies": "off",
+    "react/no-unstable-nested-components": "off",
+    "no-nested-ternary": "off"
+  }
+}

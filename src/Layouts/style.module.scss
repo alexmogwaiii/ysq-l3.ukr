@@ -1,0 +1,23 @@
+.container {
+  height: 160px;
+  background-color: #0066AB;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  background-image: url(https://i-cbt.org.ua/wp-content/uploads/2020/02/UIKPT_zori.png);
+  background-size: 10em auto;
+
+  & .logo {
+    margin-left: 20px;
+    transform: scale(0.9);
+  }
+  & .title {
+    word-wrap: break-word;
+    font-size: 18px;
+    color: #FFFFFF;
+    width: 200px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 24px;
+  }
+}
