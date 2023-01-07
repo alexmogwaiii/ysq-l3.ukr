@@ -7,10 +7,10 @@ export const MainRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/ysq-l3.urk' element={<MainLayout />}>
+        <Route path='/' element={<MainLayout />}>
           <Route path='/' exact element={<Intro />} />
-          <Route path='/survey' element={<div />} />
-          <Route path='/results' element={<div />} />
+          <Route path='survey' element={<div />} />
+          <Route path='results' element={<div />} />
         </Route>
       </Routes>
     </BrowserRouter>
