@@ -1,28 +1,48 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import dayjs from 'dayjs';
+import { newQuestions } from '../constants/questions';
 
 const UserContext = createContext(null);
 
 const validationSchema = yup.object().shape({
-  userName: yup.string().required('Required field'),
+  userName: yup.string().min(2).required('Required field'),
   data: yup.string().required('Required field'),
 });
 
 export const UserProvider = ({ children }) => {
-  const onSubmit = () => {
-    //
-  };
+  // eslint-disable-next-line
+  const [questions, setQuestions] = useState([]);
 
-  const { values, setFieldValue, handleSubmit } = useFormik({
+  const handleChange = useCallback(
+    ({ questionId, choice }) => {
+      const cloneQuestions = questions.map((item) =>
+        item.id === questionId
+          ? {
+              ...item,
+              choice,
+            }
+          : item,
+      );
+
+      setQuestions(cloneQuestions);
+    },
+    [questions],
+  );
+
+  useEffect(() => {
+    setQuestions(newQuestions);
+  }, []);
+
+  const { values, setFieldValue, handleSubmit, errors, validateField } = useFormik({
     initialValues: {
       userName: '',
       data: dayjs(new Date()).format('YYYY-MM-DD'),
     },
     validationSchema,
-    onSubmit,
     validateOnChange: true,
+    validateOnBlur: true,
   });
 
   const user = useMemo(
@@ -30,8 +50,12 @@ export const UserProvider = ({ children }) => {
       values,
       setFieldValue,
       handleSubmit,
+      errors,
+      validateField,
+      questions,
+      handleChange,
     }),
-    [values],
+    [values, handleChange, errors, validateField, questions],
   );
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;

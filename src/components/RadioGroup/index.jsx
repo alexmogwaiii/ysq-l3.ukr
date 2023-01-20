@@ -1,13 +1,16 @@
 import React from 'react';
 import { Radio } from 'antd';
 
-export const RadioGroup = ({ value, disabled }) => {
+export const RadioGroup = ({ value, disabled, handleChange, id }) => {
   const onChange = (e) => {
-    console.log('radio checked', e.target.value);
+    if (!handleChange) {
+      return;
+    }
+    handleChange({ questionId: id, choice: e.target.value });
   };
 
   return (
-    <Radio.Group disabled={disabled} onChange={onChange} value={value || 1}>
+    <Radio.Group disabled={disabled} onChange={onChange} value={value}>
       <Radio value={1}>1</Radio>
       <Radio value={2}>2</Radio>
       <Radio value={3}>3</Radio>

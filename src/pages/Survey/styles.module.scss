@@ -1,0 +1,19 @@
+.container {
+  padding: 24px 100px 100px;
+
+  & .listItem {
+    margin: 24px 0;
+
+    & .text {
+      margin-bottom: 12px;
+      line-height: 24px;
+    }
+  }
+
+  .button {
+    width: 190px;
+    height: 50px;
+    font-size: 18px;
+    margin-top: 16px;
+  }
+}

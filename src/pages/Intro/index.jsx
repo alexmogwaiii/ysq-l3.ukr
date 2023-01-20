@@ -1,6 +1,7 @@
 import React from 'react';
-import { Input, DatePicker } from 'antd';
+import { Input, DatePicker, Button } from 'antd';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
 
 import { useUserContext } from '../../providers/userProvider';
 import { RadioGroup } from '../../components/RadioGroup';
@@ -8,13 +9,25 @@ import { RadioGroup } from '../../components/RadioGroup';
 import styles from './styles.module.scss';
 
 export const Intro = () => {
+  const navigate = useNavigate();
+
   const {
     values: { userName, date },
     setFieldValue,
+    errors,
+    validateField,
   } = useUserContext();
 
   const onChangeDate = (d, dateString) => {
     setFieldValue(dateString);
+  };
+
+  const onNavigateToSurvey = async () => {
+    await validateField('userName');
+
+    if (userName) {
+      navigate('/survey');
+    }
   };
 
   return (
@@ -22,17 +35,24 @@ export const Intro = () => {
       <h2 className={styles.title}>YSQ-L3</h2>
 
       <div className={styles.inputsContainer}>
-        <div className={styles.inputContainer}>
-          <span>Ім&apos;я</span>
-          <Input
-            value={userName}
-            name='userName'
-            onChange={(e) => {
-              const { value } = e.target;
-              setFieldValue('userName', value);
-            }}
-            placeholder='Basic usage'
-          />
+        <div>
+          <div className={styles.inputContainer}>
+            <span>Ім&apos;я</span>
+            <Input
+              status={errors.userName && 'error'}
+              value={userName}
+              name='userName'
+              onChange={(e) => {
+                const { value } = e.target;
+                setFieldValue('userName', value);
+              }}
+              placeholder={`Ім'я`}
+            />
+          </div>
+
+          {errors.userName && (
+            <span className={styles.errorMessage}>Будь ласка, введіть ваше ім&apos;я</span>
+          )}
         </div>
         <div className={styles.inputContainer}>
           <span>Дата</span>
@@ -79,6 +99,9 @@ export const Intro = () => {
           </span>
         </p>
         <RadioGroup />
+        <Button onClick={onNavigateToSurvey} className={styles.button} type='primary'>
+          Перехід до тесту
+        </Button>
       </div>
     </div>
   );
