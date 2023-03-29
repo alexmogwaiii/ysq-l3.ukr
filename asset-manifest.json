@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/ysq-l3.ukr/static/css/main.9b60ec86.css",
-    "main.js": "/ysq-l3.ukr/static/js/main.57dfac66.js",
+    "main.css": "/ysq-l3.ukr/static/css/main.e361903a.css",
+    "main.js": "/ysq-l3.ukr/static/js/main.346eaa3d.js",
     "static/media/i-cbt-emblem-bg.svg": "/ysq-l3.ukr/static/media/i-cbt-emblem-bg.4fa818da5ba0467c95a9e6c2330a3884.svg",
     "index.html": "/ysq-l3.ukr/index.html",
-    "main.9b60ec86.css.map": "/ysq-l3.ukr/static/css/main.9b60ec86.css.map",
-    "main.57dfac66.js.map": "/ysq-l3.ukr/static/js/main.57dfac66.js.map"
+    "main.e361903a.css.map": "/ysq-l3.ukr/static/css/main.e361903a.css.map",
+    "main.346eaa3d.js.map": "/ysq-l3.ukr/static/js/main.346eaa3d.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b60ec86.css",
-    "static/js/main.57dfac66.js"
+    "static/css/main.e361903a.css",
+    "static/js/main.346eaa3d.js"
   ]
 }
