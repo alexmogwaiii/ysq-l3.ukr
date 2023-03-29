@@ -1,25 +1,33 @@
 import React from 'react';
 
 import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import { useUserContext } from '../../providers/userProvider';
-import { RadioGroup } from '../../components/RadioGroup';
+import { SurveyCard } from '../../components/SurveyCard';
 
 export const Survey = () => {
-  const { questions, handleChange } = useUserContext();
+  const navigate = useNavigate();
+
+  const { questions, handleChange, calculateSchemas, calculateLoading } = useUserContext();
+
+  const onClickComplete = () => {
+    calculateSchemas(() => {
+      navigate('/results');
+    });
+  };
 
   return (
     <div className={styles.container}>
       {questions.map((question) => (
-        <div className={styles.listItem} key={question.id}>
-          <p className={styles.text}>
-            <span>{question.id + 1}. </span>
-            {question.text}
-          </p>
-          <RadioGroup handleChange={handleChange} id={question.id} value={question.choice} />
-        </div>
+        <SurveyCard question={question} key={question.id} handleChange={handleChange} />
       ))}
-      <Button className={styles.button} type='primary'>
+      <Button
+        loading={calculateLoading}
+        onClick={onClickComplete}
+        className={styles.button}
+        type='primary'
+      >
         Зберегти
       </Button>
     </div>
